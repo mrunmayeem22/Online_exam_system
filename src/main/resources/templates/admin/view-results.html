@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Results</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body class="results-light">
+
+<div class="results-wrapper">
+
+    <div class="results-header-light">
+        <h1>All Student Results</h1>
+    </div>
+
+    <div class="results-card-light">
+        <table class="results-table-light">
+            <thead>
+                <tr>
+                    <th>Student ID</th>
+                    <th>Roll Number</th>
+                    <th>Exam Title</th>
+                    <th>Marks Obtained</th>
+                    <th>Total Marks</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each="r : ${results}">
+                    <td th:text="${r.student.userId}"></td>
+                    <td th:text="${r.student.rollNumber}"></td>
+                    <td th:text="${r.exam.title}"></td>
+                    <td th:text="${r.score}"></td>
+                    <td th:text="${r.exam.totalMarks}"></td>
+                </tr>
+
+                <tr th:if="${#lists.isEmpty(results)}">
+                    <td colspan="5" class="empty-light">
+                        No results available
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <div class="results-footer-light">
+        <a href="/admin/dashboard" class="back-link">
+            ← Back to Dashboard
+        </a>
+    </div>
+</div>
+</body>
+</html>

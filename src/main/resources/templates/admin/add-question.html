@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Question</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+
+<div class="question-editor">
+    <div class="question-progress">
+        <h2>
+            Question
+            <span th:text="${currentQuestion}"></span>
+            /
+            <span th:text="${totalQuestions}"></span>
+        </h2>
+        <p>Add question details below</p>
+    </div>
+
+    <form action="/question/add" method="post" class="question-form">
+        <div class="form-group">
+            <label>Question</label>
+            <textarea name="questionText"
+                      placeholder="Enter the question here..."
+                      required></textarea>
+        </div>
+
+        <div class="options-block">
+            <div class="form-group">
+                <label>Option A</label>
+                <input type="text" name="optionA" placeholder="Option A" required>
+            </div>
+
+            <div class="form-group">
+                <label>Option B</label>
+                <input type="text" name="optionB" placeholder="Option B" required>
+            </div>
+
+            <div class="form-group">
+                <label>Option C</label>
+                <input type="text" name="optionC" placeholder="Option C" required>
+            </div>
+
+            <div class="form-group">
+                <label>Option D</label>
+                <input type="text" name="optionD" placeholder="Option D" required>
+            </div>
+
+        </div>
+        <div class="form-row">
+            <div class="form-group half">
+                <label>Correct Option</label>
+                <select name="correctOption" required>
+                    <option value="">Select correct option</option>
+                    <option value="A">Option A</option>
+                    <option value="B">Option B</option>
+                    <option value="C">Option C</option>
+                    <option value="D">Option D</option>
+                </select>
+            </div>
+
+            <div class="form-group half">
+                <label>Marks</label>
+                <input type="number" name="marks" placeholder="Marks" required>
+            </div>
+
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                <span th:text="${currentQuestion < totalQuestions ? 'Next Question' : 'Final Create Exam'}"></span>
+            </button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

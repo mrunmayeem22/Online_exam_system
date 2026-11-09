@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Login</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+
+<div class="overlay"></div>
+
+<div class="center-container">
+    <div class="login-card">
+        <h2 class="card-title">Student Login</h2>
+        <p class="card-subtitle">Access your online examination</p>
+
+        <form action="/student/login" method="post">
+
+            <!-- 🔥 Roll Number instead of Email -->
+            <input type="text"
+                   name="rollNumber"
+                   placeholder="Roll Number"
+                   required>
+
+            <input type="password"
+                   name="password"
+                   placeholder="Password"
+                   required>
+
+            <button type="submit" class="btn student-btn">
+                Login
+            </button>
+
+            <p th:text="${error}" style="color:red"></p>
+        </form>
+
+        <p class="register-text">
+            New user? <a href="/student/register">Register</a>
+        </p>
+    </div>
+</div>
+
+</body>
+</html>

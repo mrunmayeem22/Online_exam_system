@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Available Exams</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+
+<div class="overlay"></div>
+<div class="available-exams-page">
+    <div class="page-header">
+        <h1>Available Exams</h1>
+        <p>Active exams created by admin</p>
+    </div>
+
+<div class="exam-list">
+    <div th:each="exam : ${exams}" class="exam-card">
+         <div class="exam-info">
+                <h3 th:text="${exam.title}"></h3>
+                <p class="subject" th:text="${exam.subject}"></p>
+                <p class="meta">
+                    Duration: <span th:text="${exam.duration}"></span> mins
+                </p>
+            </div>
+
+            <div class="exam-action">
+                <a th:href="@{/exam/start/{id}(id=${exam.examId})}"
+                   class="btn student-btn">
+                    Start Exam
+                </a>
+            </div>
+        </div>
+
+        <div th:if="${#lists.isEmpty(exams)}" class="no-exam">
+            <p>No active exams available right now.</p>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

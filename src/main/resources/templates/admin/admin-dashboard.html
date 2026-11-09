@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+
+<div class="overlay"></div>
+<div class="top-bar">
+    <a href="/" class="logout-btn">Logout</a>
+</div>
+
+<div class="dashboard-container">
+    <div class="dashboard-header">
+        <h1>Admin Dashboard</h1>
+        <p>Manage exams and view student results</p>
+    </div>
+
+    <div class="dashboard-cards">
+        <a href="/admin/create-exam" class="dashboard-card">
+            <div class="card-icon">📝</div>
+            <h3>Create Exam</h3>
+            <p>Create new exams and add questions</p>
+        </a>
+
+        <a href="/admin/results" class="dashboard-card">
+            <div class="card-icon">📊</div>
+            <h3>View Results</h3>
+            <p>View and analyze student exam results</p>
+        </a>
+
+    </div>
+
+    <div class="admin-section">
+        <h2>Created Exams</h2>
+        <ul class="exam-list-admin">
+            <li th:each="exam : ${exams}"
+                th:text="${exam.title}">
+            </li>
+
+            <li th:if="${#lists.isEmpty(exams)}">
+                No exams created yet
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

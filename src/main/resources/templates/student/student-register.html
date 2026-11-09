@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Registration</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+
+<div class="overlay"></div>
+
+<div class="center-container">
+    <div class="login-card">
+        <h2 class="card-title">Student Registration</h2>
+        <p class="card-subtitle">Create your account to start exams</p>
+
+        <form action="/student/register" method="post">
+
+            <input type="text" name="rollNumber" placeholder="Roll Number" required>
+
+            <input type="text" name="name" placeholder="Full Name" required>
+
+            <input type="email" name="email" placeholder="Email Address" required>
+
+            <input type="password" name="password" placeholder="Password" required>
+
+            <button type="submit" class="btn student-btn">
+                Register
+            </button>
+
+            <p th:text="${error}" style="color:red"></p>
+        </form>
+
+        <p class="register-text">
+            Already have an account? <a href="/student/login">Login</a>
+        </p>
+    </div>
+</div>
+
+</body>
+</html>

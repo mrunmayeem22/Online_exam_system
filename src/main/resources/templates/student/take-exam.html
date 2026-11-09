@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Take Exam</title>
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/student.css">
+</head>
+<script>
+    let suspiciousActivity = false;
+    let examSubmitted = false;
+
+    function submitExamForCheating() {
+        if (examSubmitted) return;
+
+        examSubmitted = true;
+        alert("Suspicious activity detected! Exam is being submitted.");
+        document.getElementById("examForm").submit();
+    }
+
+       window.addEventListener("blur", function () {
+        suspiciousActivity = true;
+    });
+    
+    window.addEventListener("focus", function () {
+        if (suspiciousActivity && !examSubmitted) {
+            submitExamForCheating();
+        }
+    });
+
+    document.addEventListener("visibilitychange", function () {
+        if (document.hidden) {
+            suspiciousActivity = true;
+        }
+    });
+</script>
+
+
+<body>
+
+<div class="overlay"></div>
+
+<div class="exam-page">
+
+    <div class="exam-header">
+        <h2 th:text="${exam.title}"></h2>
+        <span id="timer" class="timer"></span>
+    </div>
+
+    <div id="examData" th:data-duration="${exam.duration}"></div>
+
+    <div class="exam-content">
+        <form id="examForm" action="/exam/submit" method="post">
+
+            <div th:each="question : ${questions}" class="question-block">
+                <p class="question" th:text="${question.questionText}"></p>
+
+                <div th:each="opt : ${question.options}" class="option">
+                    <label>
+                        <input type="radio"
+                               th:name="'q_' + ${question.questionId}"
+                               th:value="${opt.optionId}"
+                               required>
+                        <span th:text="${opt.optionText}"></span>
+                    </label>
+                </div>
+                <hr>
+            </div>
+
+            <input type="hidden" name="examId" th:value="${exam.examId}">
+
+            <div class="submit-bar">
+        <button type="submit" class="btn btn-primary">
+    Submit Exam
+</button>
+ </div>
+ </form>
+ </div>
+</div>
+<script src="/js/exam-timer.js"></script>
+</body>
+</html>

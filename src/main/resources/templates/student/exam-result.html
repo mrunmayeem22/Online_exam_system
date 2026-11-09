@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Exam Submitted</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+
+<div class="overlay"></div>
+
+<div class="success-wrapper">
+    <div class="success-box">
+
+        <div class="success-icon">🎉</div>
+
+        <h1>Exam Submitted Successfully</h1>
+
+        <p class="score-text">
+            Your Score:
+            <span class="score">
+                <span th:text="${score}"></span> /
+                <span th:text="${totalMarks}"></span>
+            </span>
+        </p>
+
+        <a href="/student/dashboard" class="success-btn">
+            Go to Student Dashboard
+        </a>
+
+    </div>
+</div>
+
+</body>
+</html>

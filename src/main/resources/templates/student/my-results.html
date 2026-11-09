@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My Exam Results</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body class="results-light">
+
+<div class="results-wrapper">
+
+    <div class="results-header-light">
+        <h1>My Exam Results</h1>
+    </div>
+
+    <div class="results-card-light">
+
+        <table class="results-table-light">
+            <thead>
+                <tr>
+                    <th>Roll Number</th>
+                    <th>Exam</th>
+                    <th>Score</th>
+                    <th>Total Marks</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each="r : ${results}">
+                    <td th:text="${r.student.rollNumber}"></td>
+                    <td th:text="${r.exam.title}"></td>
+                    <td th:text="${r.score}"></td>
+                    <td th:text="${r.exam.totalMarks}"></td>
+                </tr>
+
+                <tr th:if="${#lists.isEmpty(results)}">
+                    <td colspan="4" class="empty-light">
+                        You have not attempted any exams yet
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <div class="results-footer-light">
+        <a href="/student/dashboard" class="back-link">
+            ← Back to Dashboard
+        </a>
+    </div>
+
+</div>
+
+</body>
+</html>
